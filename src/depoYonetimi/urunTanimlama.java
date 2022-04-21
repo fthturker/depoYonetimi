@@ -72,7 +72,7 @@ public class urunTanimlama {
         return raf;
     }
 
-    public static void setRaf(String raf) {
+    public static void setRaf(String raf)                                  {
         urunTanimlama.raf = raf;
     }
 
