@@ -24,7 +24,7 @@ public class mapDeneme {
         uretici=scan.nextLine();
         list.add(uretici);
         //scan.next();
-        System.out.println("üreticisini giriniz: ");
+        System.out.println("miktarini giriniz: ");
         miktar=scan.nextLine();
         list.add(miktar);
         //scan.next();

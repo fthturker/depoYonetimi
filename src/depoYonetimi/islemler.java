@@ -1,14 +1,12 @@
 package depoYonetimi;
 
-import java.util.ArrayList;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 
-import static depoYonetimi.urunTanimlama.urunId;
+import static depoYonetimi.urunTanimlama.*;
 
 public class islemler {
     static Scanner scan=new Scanner(System.in);
-    static ArrayList<urunTanimlama> urunList=new ArrayList<>();
+    public static List<String> urunList= new ArrayList<>();
     public static void girisPaneli(){
         System.out.println("====================================\nDEPO YONETIM PANELI\n" +
                 "====================================\n"
@@ -20,73 +18,93 @@ public class islemler {
                 urunTanımla();
                 girisPaneli();
                 break;
-            case "2":
+            case "2": //Jasmina, zeynep, merve
                 urunListele();
                 girisPaneli();
                 break;
-            case "3":
+            case "3": // oğuzhan, fatih
                 urunGirisi();
                 girisPaneli();
                 break;
-            case "4":
+            case "4"://gökhan, hüseyin
                 urunuRafaKoy();
                 girisPaneli();
                 break;
-            case "5":
+            case "5":// defne, şule
                 urunCikisi();
                 girisPaneli();
-            break;
+                break;
             default:
                 System.out.println("hatalı giriş yapınız");
                 girisPaneli();
                 break;
         }
     }
-
     private static void urunCikisi() {
         urunListeYazdir();
     }
-
-
-
     private static void urunuRafaKoy() {
         urunListeYazdir();
     }
-
     private static void urunGirisi() {
         urunListeYazdir();
     }
-
     private static void urunListele() {
         urunListeYazdir();
     }
-
     private static void urunTanımla() {
-        //urunTanimlama 	==>  urunun ismi, ureticisi ve birimi girilecek. id  alınacak.
+        //List<String> urunList= new ArrayList<>();
+        //urunTanimlama     ==>  urunun ismi, ureticisi ve birimi girilecek. id  alınacak.
         System.out.println("ürün ismi giriniz: ");
-        String urunIsmi=scan.nextLine();
-
-        scan.next();
+        urunIsmi=scan.next();
+        urunList.add(urunIsmi);
+        //scan.next();
         System.out.println("üreticisini giriniz: ");
-        String uretici=scan.nextLine();
-
-        scan.next();
+        uretici=scan.next();
+        urunList.add(uretici);
+        //scan.next();
         System.out.println("birimi giriniz: ");
-        String birim=scan.nextLine();
-
-        scan.next();
+        birim=scan.next();
+        urunList.add(birim);
+        //scan.next();
         System.out.println("id giriniz: ");
-        String id=scan.nextLine();
-        scan.next();
-        urunTanimlama urunlerimiz=new urunTanimlama(id,urunIsmi,uretici,birim);
-
-        urunList.add(urunlerimiz);
-        System.out.println(urunList.toString());
-       // urunListeYazdir();
+        urunId=scan.nextInt();
+        Map<Integer, List> urunListesiMap = new HashMap<Integer,List>();
+        urunListesiMap.put(urunId,urunList);
+        System.out.println(urunListesiMap);
     }
-
-
     private static void urunListeYazdir() {
         urunListeYazdir();
     }
+
+    private static void giris() {
+        System.out.println("   ***      urun icin giris sayfası     ***");
+
+        System.out.print("Giris yapmak istediginiz urunun ID sini giriniz : ");
+        int arananId = scan.nextInt();
+
+        boolean flag = true;
+        for (String u : urunList) {
+            if (urunId == arananId) {
+                System.out.print("girmek istediginiz değeri yazınız : ");
+                int giris = scan.nextInt();
+                if (giris > 0) {
+                    urunMiktar += giris;
+                    System.out.println("miktar eklendi....");
+                } else {
+                    System.out.println("giris yaparken eksi deger girmeyiniz");
+                }
+                flag = false;
+                break;
+            }
+
+        }
+        if (flag) {
+            System.out.println("Giris yapmak istediginiz urun bulunamadı....");
+        }
+
+
+    }
+
+
 }
